@@ -1,7 +1,7 @@
 'use strict';
 
-function getTimeRemaining(endtime) {
-  const t = Date.parse(endtime) - Date.parse(new Date());
+function getTimeRemaining(endTime) {
+  const t = Date.parse(endTime) - Date.parse(new Date());
   const seconds = Math.floor((t / 1000) % 60);
   const minutes = Math.floor((t / 1000 / 60) % 60);
   const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -15,7 +15,7 @@ function getTimeRemaining(endtime) {
   };
 }
 
-function initializeClock(id, endtime) {
+function initializeClock(id, endTime) {
   const clock = document.getElementById(id);
   const daysSpan = clock.querySelector('.days');
   const hoursSpan = clock.querySelector('.hours');
@@ -23,7 +23,7 @@ function initializeClock(id, endtime) {
   const secondsSpan = clock.querySelector('.seconds');
 
   function updateClock() {
-    const t = getTimeRemaining(endtime);
+    const t = getTimeRemaining(endTime);
 
     daysSpan.innerHTML = t.days;
     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
@@ -31,13 +31,13 @@ function initializeClock(id, endtime) {
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
     if (t.total <= 0) {
-      clearInterval(timeinterval);
+      clearInterval(timeInterval);
     }
   }
 
   updateClock();
-  const  timeinterval = setInterval(updateClock, 1000);
+  const timeInterval = setInterval(updateClock, 1000);
 }
 
-const deadTime = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+const deadTime = new Date(Date.parse(new Date()) + 11 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadTime);
